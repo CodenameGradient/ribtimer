@@ -1,11 +1,6 @@
 package com.codenamegradient.ribtimer;
 
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -15,12 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-
 public class MainActivity extends AppCompatActivity {
 
     private CountDownTimer[] timers;
     private Boolean[] timerStatus;
+
+    private Uri testAlarmUri;
+    private Ringtone testRingtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +27,14 @@ public class MainActivity extends AppCompatActivity {
         timerStatus = new Boolean[4];
 
         createTimers();
+
+        testAlarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        testRingtone = RingtoneManager.getRingtone(getApplicationContext(), testAlarmUri);
     }
 
+    /**
+     * Instantiates all the timers
+     */
     private void createTimers() {
         timerStatus[0] = false;
         timerStatus[1] = false;
@@ -99,7 +101,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Toggles the alarm on/off when the test button is tapped
+     *
+     * @param view
+     */
+    public void toggleTest(View view) {
+        Button button = findViewById(R.id.toggle_test);
+
+        if (testRingtone.isPlaying()) {
+            button.setText(getString(R.string.timer_start));
+            button.setBackgroundColor(getResources().getColor(R.color.button_start));
+            testRingtone.stop();
+        } else {
+            button.setText(getString(R.string.timer_stop));
+            button.setBackgroundColor(getResources().getColor(R.color.button_stop));
+            testRingtone.play();
+        }
+
+    }
+
+    /**
      * Handles the button actions
+     *
      * @param view
      */
     public void toggleTimer(View view) {
@@ -195,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Converts minutes to milliseconds
+     *
      * @param minutes
      * @return long milliseconds
      */
@@ -204,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Converts milliseconds to a human readable string
+     *
      * @param milliseconds
      * @return string string
      */

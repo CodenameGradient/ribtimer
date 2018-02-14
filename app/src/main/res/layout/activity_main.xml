@@ -124,6 +124,31 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/initial_test"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/toggle_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/initial_button"
+                    android:background="@color/button_start"
+                    android:textColor="@color/button_text"
+                    android:onClick="toggleTest" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>

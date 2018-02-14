@@ -9,6 +9,6 @@
     <string name="initial_60">1 Hour</string>
     <string name="initial_120">2 Hours</string>
     <string name="initial_10s">10 Seconds</string>
-
+    <string name="initial_test">Test Alarm</string>
     <string name="initial_button">Start</string>
 </resources>
