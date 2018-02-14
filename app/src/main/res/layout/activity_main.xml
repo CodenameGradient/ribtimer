@@ -97,33 +97,7 @@
 
             </LinearLayout>
 
-            <!-- 2 hours -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/display_10s"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/initial_10s"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/toggle_10s"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/button_start"
-                    android:onClick="toggleTimer"
-                    android:text="@string/initial_button"
-                    android:textColor="@color/button_text" />
-
-            </LinearLayout>
-
+            <!-- Alarm Test -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
