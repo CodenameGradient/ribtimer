@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer[] timers;
     private Boolean[] timerStatus;
 
-    private Uri testAlarmUri;
-    private Ringtone testRingtone;
+    private Uri alarmUri;
+    private Ringtone alarmRingtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         createTimers();
 
-        testAlarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        testRingtone = RingtoneManager.getRingtone(getApplicationContext(), testAlarmUri);
+        alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        alarmRingtone = RingtoneManager.getRingtone(getApplicationContext(), alarmUri);
     }
 
     /**
@@ -46,40 +46,43 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long l) {
-
                 textView.setText(millisecondsToString(l));
             }
 
             @Override
             public void onFinish() {
-                // todo: make noise
+                alarmRingtone.play();
                 textView.setText(getString(R.string.timer_finished));
             }
         };
 
         timers[1] = new CountDownTimer(minutesToMilliseconds(60), 1000) {
+            TextView textView = findViewById(R.id.display_60);
+
             @Override
             public void onTick(long l) {
-                TextView textView = findViewById(R.id.display_60);
                 textView.setText(millisecondsToString(l));
             }
 
             @Override
             public void onFinish() {
-                // todo: make noise
+                alarmRingtone.play();
+                textView.setText(getString(R.string.timer_finished));
             }
         };
 
         timers[2] = new CountDownTimer(minutesToMilliseconds(120), 1000) {
+            TextView textView = findViewById(R.id.display_120);
+
             @Override
             public void onTick(long l) {
-                TextView textView = findViewById(R.id.display_120);
                 textView.setText(millisecondsToString(l));
             }
 
             @Override
             public void onFinish() {
-                // todo: make noise
+                alarmRingtone.play();
+                textView.setText(getString(R.string.timer_finished));
             }
         };
 
@@ -88,13 +91,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long l) {
-                TextView textView = findViewById(R.id.display_10s);
                 textView.setText(millisecondsToString(l));
             }
 
             @Override
             public void onFinish() {
-                // todo: make noise
+                alarmRingtone.play();
                 textView.setText(getString(R.string.timer_finished));
             }
         };
@@ -108,14 +110,14 @@ public class MainActivity extends AppCompatActivity {
     public void toggleTest(View view) {
         Button button = findViewById(R.id.toggle_test);
 
-        if (testRingtone.isPlaying()) {
+        if (alarmRingtone.isPlaying()) {
             button.setText(getString(R.string.timer_start));
             button.setBackgroundColor(getResources().getColor(R.color.button_start));
-            testRingtone.stop();
+            alarmRingtone.stop();
         } else {
             button.setText(getString(R.string.timer_stop));
             button.setBackgroundColor(getResources().getColor(R.color.button_stop));
-            testRingtone.play();
+            alarmRingtone.play();
         }
 
     }
@@ -142,14 +144,13 @@ public class MainActivity extends AppCompatActivity {
                     button.setBackgroundColor(getResources().getColor(R.color.button_start));
                     button.setText(getString(R.string.timer_start));
 
+                    alarmRingtone.stop();
                 } else {
                     timerStatus[0] = true;
                     timers[0].start();
 
                     button.setBackgroundColor(getResources().getColor(R.color.button_stop));
                     button.setText(getString(R.string.timer_stop));
-
-
                 }
                 break;
 
@@ -164,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     button.setBackgroundColor(getResources().getColor(R.color.button_start));
                     button.setText(getString(R.string.timer_start));
 
+                    alarmRingtone.stop();
                 } else {
                     timerStatus[1] = true;
                     timers[1].start();
@@ -184,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     button.setBackgroundColor(getResources().getColor(R.color.button_start));
                     button.setText(getString(R.string.timer_start));
 
+                    alarmRingtone.stop();
                 } else {
                     timerStatus[2] = true;
                     timers[2].start();
@@ -204,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                     button.setBackgroundColor(getResources().getColor(R.color.button_start));
                     button.setText(getString(R.string.timer_start));
 
+                    alarmRingtone.stop();
                 } else {
                     timerStatus[3] = true;
                     timers[3].start();
