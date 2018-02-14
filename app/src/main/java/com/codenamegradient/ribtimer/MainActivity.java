@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         timerStatus[0] = false;
         timerStatus[1] = false;
         timerStatus[2] = false;
+        timerStatus[3] = false;
 
         timers[0] = new CountDownTimer(minutesToMilliseconds(20), 1000) {
             TextView textView = findViewById(R.id.display_20);
@@ -84,6 +85,23 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(getString(R.string.timer_finished));
             }
         };
+
+        timers[3] = new CountDownTimer(minutesToMilliseconds(180), 1000) {
+            TextView textView = findViewById(R.id.display_180);
+
+            @Override
+            public void onTick(long l) {
+                textView.setText(millisecondsToString(l));
+            }
+
+            @Override
+            public void onFinish() {
+                alarmRingtone.play();
+                textView.setText(getString(R.string.timer_finished));
+            }
+        };
+
+
     }
 
     /**
@@ -174,6 +192,27 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     timerStatus[2] = true;
                     timers[2].start();
+
+                    button.setBackgroundColor(getResources().getColor(R.color.button_stop));
+                    button.setText(getString(R.string.timer_stop));
+                }
+                break;
+
+            case R.id.toggle_180:
+                if (timerStatus[3]) {
+                    timerStatus[3] = false;
+                    timers[3].cancel();
+
+                    textView = findViewById(R.id.display_180);
+                    textView.setText(getString(R.string.initial_180));
+
+                    button.setBackgroundColor(getResources().getColor(R.color.button_start));
+                    button.setText(getString(R.string.timer_start));
+
+                    alarmRingtone.stop();
+                } else {
+                    timerStatus[3] = true;
+                    timers[3].start();
 
                     button.setBackgroundColor(getResources().getColor(R.color.button_stop));
                     button.setText(getString(R.string.timer_stop));
