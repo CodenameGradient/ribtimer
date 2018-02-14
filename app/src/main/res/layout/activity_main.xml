@@ -116,18 +116,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/initial_button"
                     android:background="@color/button_start"
-                    android:textColor="@color/button_text"
-                    android:onClick="toggleTest" />
+                    android:onClick="toggleTest"
+                    android:text="@string/initial_button"
+                    android:textColor="@color/button_text" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/alarm_notice"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:text="@string/alarm_notice" />
 
         </LinearLayout>
 
