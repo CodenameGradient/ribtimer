@@ -11,4 +11,6 @@
     <string name="initial_10s">10 Seconds</string>
     <string name="initial_test">Test Alarm</string>
     <string name="initial_button">Start</string>
+
+    <string name="alarm_notice">If you don\'t hear an alarm, make sure you have an alarm ringtone set in your phone settings!</string>
 </resources>
